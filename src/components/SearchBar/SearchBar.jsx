@@ -1,56 +1,94 @@
 import css from 'styles.module.css';
 import { RiFindReplaceLine } from 'react-icons/ri';
-import { Component } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
+export const SearchBar = ({ onSubmit }) => {
+  const [q, setQ] = useState('');
 
-export class SearchBar extends Component {
-  state = {
-    picture: '',
-  };
-
-  handleSubmtit = e => {
+  const handleSubmtit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.picture);
-    this.reset();
+    onSubmit(q);
+    reset();
   };
 
-  handleChange = e => {
-    this.setState({ picture: e.target.value });
+  const handleChange = e => {
+    setQ(e.target.value);
   };
 
-  reset = () => {
-    this.setState({
-      picture: null,
-    });
+  const reset = () => {
+    setQ(null);
   };
 
-  render() {
-    return (
-      <header className={css.Searchbar}>
-        <form className={css.SearchForm} onSubmit={this.handleSubmtit}>
-          <button type="submit" className={css.SearchFormButton}>
-            <RiFindReplaceLine />
+  return (
+    <header className={css.Searchbar}>
+      <form className={css.SearchForm} onSubmit={handleSubmtit}>
+        <button type="submit" className={css.SearchFormButton}>
+          <RiFindReplaceLine />
 
-            <span className={css.SearchFormButtonLabel}></span>
-          </button>
+          <span className={css.SearchFormButtonLabel}></span>
+        </button>
 
-          <input
-            required
-            className={css.SearchFormInput}
-            onChange={this.handleChange}
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
-          />
-        </form>
-      </header>
-    );
-  }
-}
+        <input
+          required
+          className={css.SearchFormInput}
+          onChange={handleChange}
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+        />
+      </form>
+    </header>
+  );
+};
+
+// export class SearchBar extends Component {
+//   state = {
+//     picture: '',
+//   };
+
+//   handleSubmtit = e => {
+//     e.preventDefault();
+//     this.props.onSubmit(this.state.picture);
+//     this.reset();
+//   };
+
+//   handleChange = e => {
+//     this.setState({ picture: e.target.value });
+//   };
+
+//   reset = () => {
+//     this.setState({
+//       picture: null,
+//     });
+//   };
+
+//   render() {
+//     return (
+//       <header className={css.Searchbar}>
+//         <form className={css.SearchForm} onSubmit={this.handleSubmtit}>
+//           <button type="submit" className={css.SearchFormButton}>
+//             <RiFindReplaceLine />
+
+//             <span className={css.SearchFormButtonLabel}></span>
+//           </button>
+
+//           <input
+//             required
+//             className={css.SearchFormInput}
+//             onChange={this.handleChange}
+//             type="text"
+//             autoComplete="off"
+//             autoFocus
+//             placeholder="Search images and photos"
+//           />
+//         </form>
+//       </header>
+//     );
+//   }
+// }
 
 SearchBar.propTypes = {
-  pictures: PropTypes.array.isRequired,
   onSubmit: PropTypes.func,
 };

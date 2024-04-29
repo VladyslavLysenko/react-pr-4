@@ -101,7 +101,7 @@ export class App extends Component {
       <>
         {error && <p>Whoops, something went wrong: {error.message}</p>}
         <Toaster />
-        <SearchBar onSubmit={this.searchPicture} pictures={pictures} />
+        <SearchBar onSubmit={this.searchPicture}  />
         {isLoading && (
           <CirclesWithBar
             height="100"
