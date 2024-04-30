@@ -5,9 +5,6 @@ import css from 'styles.module.css';
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal = ({ src, alt, onClose }) => {
-  // useEffect(() => {
-  //   window.addEventListener('keydown', handleKeyDown);
-  // }, []);
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown);
@@ -15,7 +12,7 @@ export const Modal = ({ src, alt, onClose }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  });
 
   const handleKeyDown = evt => {
     if (evt.code === 'Escape') {
