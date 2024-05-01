@@ -61,8 +61,13 @@ export const App = () => {
 
   const searchPicture = value => {
     setQ(prevQ => {
-      setShouldClean(value !== prevQ);
-      return value;
+      if (prevQ === value) {
+        toast.error('You should change name');
+        return (value = '');
+      } else {
+        setShouldClean(value !== prevQ);
+        return value;
+      }
     });
   };
 
